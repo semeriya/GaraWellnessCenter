@@ -1,7 +1,7 @@
 ﻿using Gara.Models;
 using Microsoft.EntityFrameworkCore;
 
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace Gara
 {
     public class AppDbContex:DbContext
@@ -23,6 +23,11 @@ namespace Gara
             modelBuilder.Entity<Service_Customer>().HasOne(m => m.Customer).WithMany(am => am.Service_Customers).HasForeignKey(m => m.CustomerId);
             base.OnModelCreating(modelBuilder);    
         }
-        public Db Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Service_Customer> Services_Customers { get; set; }
+
     }
 }
